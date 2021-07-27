@@ -181,4 +181,59 @@ body.timetable-page {
     display: grid;
   }
 
+  .icon-circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+
+    &--green {
+      background: $active;
+    }
+
+    &--blue {
+      background: $activeBlue;
+    }
+  }
+
+  .default-link {
+    text-decoration: underline;
+    color: $active;
+    transition: all 0.3s linear;
+    cursor: pointer;
+
+
+  }
+
+  .hover-link {
+    cursor: pointer;
+    transition: all 0.3s linear;
+
+    &:hover {
+      text-decoration: underline;
+      color: $active;
+    }
+  }
+
+  .ellipse-bg {
+
+    width: 40px;
+    height: 25px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: red;
+    border-radius: 14px;
+
+    &--green {
+      background-color: #d8f2ad;
+    }
+
+    &--red {
+      background-color: #f2adad;
+    }
+  }
+
+
 }

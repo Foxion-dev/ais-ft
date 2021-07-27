@@ -1,4 +1,14 @@
 body.timetable-page {
+
+	.links {
+		padding: 20px;
+
+		a {
+			margin: 0 15px;
+			text-transform: uppercase;
+		}
+	}
+
 	.timetable {
 		background: $border;
 		padding: 35px 0 40px;
@@ -193,17 +203,44 @@ body.timetable-page {
 			margin-bottom: 5px;
 		}
 
-		&__item-content {}
+		&__item-content {
+			min-width: 138px;
+			width: 100%;
+		}
+
+		&__description-box {
+			padding-top: 30px;
+			padding-bottom: 10px;
+			width: 100%;
+		}
+
+		&__description-item {
+			max-width: 220px;
+			flex-shrink: 0;
+			width: 100%;
+			margin-right: 90px;
+		}
+
+		&__description-text {}
+
+		&__description-icon {
+			margin-right: 20px;
+		}
 	}
 
 	.events-list {
-
 
 		&__item {
 			flex-direction: column;
 			align-items: flex-start;
 			margin-bottom: 5px;
 			position: relative;
+		}
+
+		&__time-block {
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
 		}
 
 		&__item-time {
@@ -277,6 +314,7 @@ body.timetable-page {
 			}
 		}
 
+
 	}
 
 	.event-info {
@@ -337,6 +375,22 @@ body.timetable-page {
 				margin-right: 30px;
 			}
 		}
+
+		&--admin {
+			padding-top: 20px;
+
+			.event-info {
+				&__head {
+					margin-bottom: 15px;
+				}
+
+				&__code-text {
+					display: block;
+					margin-right: 20px;
+					font-weight: 700;
+				}
+			}
+		}
 	}
 
 	// ! Таблица неделя
@@ -349,6 +403,22 @@ body.timetable-page {
 		td:not(:first-child) {
 			border: 1px solid $border;
 
+		}
+
+		&--admin {
+			td {
+				border: 1px solid $border;
+
+			}
+
+			.events-list__item {
+				width: 100%;
+			}
+
+			.events-list__item-preview {
+				width: 100%;
+				justify-content: space-between;
+			}
 		}
 
 		&__head {}
@@ -388,13 +458,14 @@ body.timetable-page {
 
 		&__item {
 			display: flex;
-			width: 147px;
+			min-width: 147px;
 			padding: 10px;
 			transition: all 0.5s linear;
 
 
 			&.full {
-				filter: drop-shadow(0 0 20px #d5d5d5);
+				// filter: drop-shadow(0 0 20px #d5d5d5);
+				box-shadow: 0 0 20px #d5d5d5;
 				background-color: #f8fbf2;
 			}
 		}
@@ -491,6 +562,10 @@ body.timetable-page {
 		td span {
 			width: 100%;
 
+			&.icon-circle {
+				width: 12px;
+			}
+
 		}
 
 		&__head {
@@ -522,19 +597,43 @@ body.timetable-page {
 			font-size: 13px;
 			font-weight: 400;
 
-			span {
-				margin-bottom: 15px;
-				display: block;
-			}
+
 		}
 
 		&__item-bottom {}
 
-		&__item-text {}
+		&__item-text {
+			max-width: 380px;
+			margin-bottom: 15px;
+			display: flex;
+
+		}
 
 		&__title-head {
 			font-size: 14px;
 			padding-bottom: 5px;
+			position: relative;
+
+			&:after {
+				content: '';
+				position: absolute;
+				left: -2px;
+				bottom: -1px;
+				height: 10px;
+				width: 1px;
+				background: $border;
+			}
+
+			&:before {
+				content: '';
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+				bottom: -1px;
+				height: 5px;
+				width: 1px;
+				background: $border;
+			}
 		}
 
 		&__title {
@@ -546,6 +645,140 @@ body.timetable-page {
 			height: 175px;
 
 		}
+	}
+
+
+	.no-events {
+		// flex-direction: column;
+		// align-items: space-between;
+		flex-wrap: wrap;
+
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		min-height: 430px;
+
+		&__current-day {
+			// margin-bottom: auto;
+			text-transform: uppercase;
+			text-align: center;
+			align-self: start;
+			font-weight: 400;
+			width: 100%;
+		}
+
+		&__icon {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+
+			svg {
+				width: 120px;
+				height: 100px;
+				fill: $content;
+			}
+		}
+
+		&__title {
+			width: 100%;
+			text-align: center;
+			font-size: 16px;
+			align-self: start;
+
+		}
+	}
+
+	// ! Страница курса 
+
+	.course-info {
+		justify-content: flex-start;
+		align-items: start;
+		padding: 30px;
+		margin-bottom: 20px;
+		background: $white;
+		border-radius: 10px;
+
+		&__column {
+			&:first-child {
+				margin-right: 150px;
+			}
+		}
+	}
+
+	.info-list {
+		// width: 100%;
+
+		&__item {
+			margin-bottom: 20px;
+			max-width: 440px;
+			width: 100%;
+			align-items: start;
+
+			// justify-content: space-between;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		&__item-title {
+			min-width: 215px;
+			margin-right: 30px;
+		}
+
+		&__item-info {}
+
+		&__item-text {
+			display: block;
+
+			// margin-bottom: 20px;
+			&:not(:first-child) {
+				margin-top: 10px;
+			}
+		}
+
+		&__item-link {}
+	}
+
+	.user-list {
+
+
+		&__title-block {
+			margin-bottom: 20px;
+		}
+
+		&__title {
+			margin-right: 20px;
+		}
+
+		&__title-count {
+			color: $active;
+		}
+
+		&__list {}
+
+		&__item {
+			margin-bottom: 10px;
+		}
+
+		&__hide-list {
+			opacity: 0;
+			transform-origin: 0 0;
+			transform: scaleY(0);
+			position: absolute;
+			z-index: -1;
+			transition: transform 0.3s linear;
+
+			&.open {
+				z-index: 1;
+				position: relative;
+				transform: scaleY(1);
+				opacity: 1;
+				transition: transform 0.3s linear;
+
+			}
+		}
+
+		&__more {}
 	}
 
 

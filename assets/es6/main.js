@@ -18,15 +18,38 @@ let dayTableWidth               = dayTable.offsetWidth
 let dayTableCurrentStep         = 0
 let dayTableCountSteps          = Math.ceil((dayTableWidth - 1000) / dayTableDefaultStep)
 
+let courseUserListMore          = document.querySelector('.js-more-users')
+
 const defaultDayOfMounthHeight = 160;
 
 buttonsDetailCourse.forEach((elem) => {
-	elem.addEventListener('click', function(event)  {
+	elem.addEventListener('mouseover', function(event)  {
 		try{
+			let openItem = [...document.querySelectorAll('.event-info')].filter(info => info.classList.contains('open'))[0]
+			if( openItem != undefined) openItem.classList.remove('open')
+
 			this.closest('.events-list__item').querySelector('.event-info').classList.add('open')
+
 		}catch (error){
 			console.warn(error)
 		}
+
+	})
+	elem.addEventListener('mouseout', function(event)  {
+		// try{
+		// 	this.closest('.events-list__item').querySelector('.event-info').classList.remove('open')
+		// }catch (error){
+		// 	console.warn(error)
+		// }
+		// try{
+		// 	this.classList.remove('full')
+
+		// 	this.querySelector('.js-hide-preview').classList.remove('hide')
+		// 	this.querySelector('.js-open-detail').classList.remove('show')
+
+		// }catch (error){
+		// 	console.warn(error)
+		// }
 
 	})
 });
@@ -81,6 +104,7 @@ hoverDetailTextTrigger.forEach((elem) => {
 	elem.addEventListener('mouseover', function(event)  {
 		event.preventDefault();
 		try{
+			console.log(this);
 			this.classList.add('full')
 			this.querySelector('.js-hide-preview').classList.add('hide')
 			this.querySelector('.js-open-detail').classList.add('show')
@@ -103,10 +127,7 @@ hoverDetailTextTrigger.forEach((elem) => {
 	})
 })
 
-// dayTableArrowLeft.addEventListener('click', function() {
-// 	dayTableCurrentStep++
-// 	console.log(dayTableCurrentStep);
-// })
+
 dayTableArrowRight.addEventListener('click', function() {
 	
 	dayTableCurrentStep++;
@@ -150,8 +171,23 @@ dayTableArrowLeft.addEventListener('click', function() {
 })
 
 
+courseUserListMore.addEventListener('click', function() {
+
+	this.closest('.user-list__list').querySelector('.user-list__hide-list').classList.toggle('open')
+	this.classList.toggle('active')
+	if(this.classList.contains('active')){
+		this.innerText = 'Свернуть '
+	}else{
+		this.innerText = 'Все слушатели'
+	}
+})
+
 document.addEventListener('click', function(event) {
-	let openDay = [...document.querySelectorAll('.calendar-table__item')].filter((elem) => elem.classList.contains('full'))[0];
+	let openDay = [...document.querySelectorAll('.calendar-table__item')];
+
+	if(openDay != undefined) {
+		openDay = openDay.filter((elem) => elem.classList.contains('full'))[0]
+	}
 
 	try{
 		if (!openDay.contains(event.target)) {
@@ -163,4 +199,5 @@ document.addEventListener('click', function(event) {
 
 	// console.log(event.target);
 })
+
 });
